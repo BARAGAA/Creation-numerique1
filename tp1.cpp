@@ -9,41 +9,77 @@
 #define PI 3.14159265
 
 using namespace std;
+/*--------------------------------Algorithmes de sommation------------------*/
 
-double sommation1( double i){
+double sommationCroissantDouble( int i){
     double somme=0.0;
-    for (double j=1; j<=i; j++)
-        somme = somme + (1/j);
+    for (int j=1; j<=i; j++)
+        somme = somme + (1.0/j);
     
     return somme;
 }
 
-float sommation2( int i){
+float sommationCroissantFloat( int i){
     float somme=0.0;
-    for (float j=1; j<=i; j++)
-        somme = somme + (1/j);
+    for (int j=1; j<=i; j++)
+        somme = somme + (1.0/j);
     
     return somme;
 }
 
+double sommationDecroissantDouble( int i){
+    double somme=0.0;
+    for (int j=i; j>=1; j--)
+        somme = somme + (1.0/j);
+    
+    return somme;
+}
 
+float sommationDecroissantFloat( int i){
+    float somme=0.0;
+    for (float j=i; j>=1; j--)
+        somme = somme + (1.0/j);
+    
+    return somme;
+}
+//@TODO
+/*double sommation3Double(int i){
+  int  s = x_1;
+int c = 0 ;// c représente l’erreur à chaque addition
+for(int j=2 ; j<= i; j++ ) {
 
+}
+y = x_i - c // on additionne l’erreur de l’addition précédente au
+ // terme courant
+t=s+y
+c = (t - s) - y
+s=t
+fin pour 
+
+}*/
+
+/*------------------------------Fonctions------------------------------------*/
 double f1(double x){
     return x*x + x - 6 ;
 }
+
 double f2(double x){
     return x*x*x - 2*x - 5 ;
 }
+
 double f3(double x){
     return (exp (x) -1 ) ;
 }
+
 double f4(double x){
     return (x * sin(x*PI/180)) ;
 }
+
 double f5(double x){
     return x*x*x - 3*x*x + 3*x - 1 ;
 }
 
+/*------------------------------------Bissection-------------------------------------------*/
 
 double bissection(double a , double b ,double e, double (*f)(double)){
     if((b-a)<=e||f((b+a)/2) == 0){
@@ -55,6 +91,8 @@ double bissection(double a , double b ,double e, double (*f)(double)){
     }
 }
 
+/*---------------------------------------Newton-------------------------------*/
+
 double newtonIter(double x1,double x2 ,double e, double (*f)(double)){
     double tmp;
     double xn;
@@ -64,11 +102,10 @@ double newtonIter(double x1,double x2 ,double e, double (*f)(double)){
          x2=xn;
         xn= x1 - (f(x1)/((f(x2)-f(x1))/(x2-x1)));
     }
+     return xn;
 
-    return xn;
 
-
-}
+/*-----------------------------Programme Principal---------------------*/
 
 int main() {
     /*BISSECTION MÉTHOD */

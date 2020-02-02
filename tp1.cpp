@@ -6,7 +6,9 @@
 #include <iostream> // cin , cout ,endl
 #include <cassert> //assert function
 #include <cmath> // sin ,e
+#include <limits>
 #define PI 3.14159265
+
 
 using namespace std;
 /*--------------------------------Algorithmes de sommation------------------*/
@@ -42,20 +44,19 @@ float sommationDecroissantFloat( int i){
     
     return somme;
 }
-//@TODO
 /*double sommation3Double(int i){
-  int  s = x_1;
-int c = 0 ;// c représente l’erreur à chaque addition
-for(int j=2 ; j<= i; j++ ) {
+int y,x ,total,somme;    
+int err = 0 ;// c représente l’erreur à chaque addition
+    for(int j=2 ; j<= i; j++ ) {
 
-}
-y = x_i - c // on additionne l’erreur de l’addition précédente au
- // terme courant
-t=s+y
-c = (t - s) - y
-s=t
-fin pour 
 
+        y = x_i - c // on additionne l’erreur de l’addition précédente au
+        // terme courant
+        total=somme+y
+        c = (t - s) - y
+        s=t
+
+    }
 }*/
 
 /*------------------------------Fonctions------------------------------------*/
@@ -68,7 +69,7 @@ double f2(double x){
 }
 
 double f3(double x){
-    return (exp (x) -1 ) ;
+    return (exp(x) -1) ;
 }
 
 double f4(double x){
@@ -82,6 +83,8 @@ double f5(double x){
 /*------------------------------------Bissection-------------------------------------------*/
 
 double bissection(double a , double b ,double e, double (*f)(double)){
+    assert(f(a)*f(b) < 0); // the sign must change somewhere in the function
+    assert (a<b); // b has to be bigger than a
     if((b-a)<=e||f((b+a)/2) == 0){
         return (b+a)/2;
     }else if(f(a) * f((a+b)/2) < 0) {
@@ -103,49 +106,55 @@ double newtonIter(double x1,double x2 ,double e, double (*f)(double)){
         xn= x1 - (f(x1)/((f(x2)-f(x1))/(x2-x1)));
     }
      return xn;
+}
 
 
 /*-----------------------------Programme Principal---------------------*/
 
 int main() {
+    cout.precision(20);
+
     /*BISSECTION MÉTHOD */
-   /*  cout <<"enter the born a"<<endl;
+    /*cout <<"enter the born a"<<endl;
     double a;
     cin >> a;
     cout <<"enter the born b"<<endl;
     double b;
     cin >> b;
     cout <<"enter the precision epsilon"<<endl;
-    double e;
-    cin >> e;
-    assert(f(a)*f(b) < 0); // the sign must change somewhere in the function
-    assert (a<b); // b has to be bigger than a
+    double e0;
+    cin >> e0;
     cout <<"valid input"<<endl;
     cout << "a = "<< a <<endl <<endl;
     cout << "b = "<< b <<endl <<endl;
     cout << "e = "<< e <<endl <<endl;
-    
-    double zero = bissection(a,b,e);
-    cout <<"the found zero is "<< zero <<endl;*/
+    cout <<"the found zero is "<< bissection(a,b,e0,f1)<<endl;*/
 
     /*---------------------------------------------------------------------- */
 
     /*NEWTON MÉTHOD */
-   /* double x1;
-    cout <<"x1"<<endl;
+    double x1;
+    cout <<"x1 = ";
     cin >> x1;
-    cout <<"x2"<<endl;
+    cout <<"x2 = ";
     double x2;
     cin >> x2;
     cout <<"enter the precision epsilon"<<endl;
-    double e;
-    cin >> e; 
-    cout <<newtonIter(x1,x2,e,f2)<< endl;*/
+    double e1;
+    cin >> e1; 
+    cout <<"*------------------------------------------------------------------------------*"<<endl;
+    cout <<endl << "x_0 = "<< x1 <<"     ";
+    cout << "x_1 = "<< x2 <<"     ";
+    cout << "e = "<< e1 <<endl <<endl;
+    cout <<"racine = "<<newtonIter(x1,x2,e1,f2)<< endl;
+
 
     /*--------------SOMME-------------------  */
-    int i;
+    /*int i;
     cin >> i;
-    cout << sommation2(i) << endl;
+    cout << sommationDecroissantDouble(i) << endl; 
+    cout << sommationCroissantDouble(i) << endl;
+    */ 
 
 
 }
